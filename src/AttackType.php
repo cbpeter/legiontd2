@@ -4,9 +4,21 @@ declare(strict_types=1);
 
 namespace App;
 
-enum AttackType
+use ValueError;
+
+enum AttackType: string
 {
-    case Impact;
-    case Pierce;
-    case Magic;
+    case Impact = 'impact';
+    case Pierce = 'pierce';
+    case Magic = 'magic';
+
+    public static function fromValue(string $value): self
+    {
+        foreach (self::cases() as $enum) {
+            if(strtolower($value) === $enum->value ){
+                return $enum;
+            }
+        }
+        throw new ValueError("$value is not a valid backing value for enum " . self::class);
+    }
 }

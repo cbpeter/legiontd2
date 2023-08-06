@@ -4,10 +4,22 @@ declare(strict_types=1);
 
 namespace App;
 
-enum ArmorType
+use ValueError;
+
+enum ArmorType: string
 {
-    case Swift;
-    case Natural;
-    case Fortified;
-    case Arcane;
+    case Swift = 'swift';
+    case Natural = 'natural';
+    case Fortified = 'fortified';
+    case Arcane = 'arcane';
+
+    public static function fromValue(string $value): self
+    {
+        foreach (self::cases() as $enum) {
+            if(strtolower($value) === $enum->value ){
+                return $enum;
+            }
+        }
+        throw new ValueError("$value is not a valid backing value for enum " . self::class);
+    }
 }
