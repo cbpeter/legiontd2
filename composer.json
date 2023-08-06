@@ -1,0 +1,15 @@
+{
+    "name": "peter.ton/legiontd2",
+    "autoload": {
+        "psr-4": {
+            "PeterTon\\Legiontd2\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Peter Ton",
+            "email": "peter.ton@coolblue.nl"
+        }
+    ],
+    "require": {}
+}
